@@ -12,7 +12,6 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# --- клавиатура под полем ввода ---
 main_kb = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text="/help")],
@@ -69,7 +68,6 @@ async def help_cmd(message: Message):
 
 @dp.message(Command("calc"))
 async def calc_cmd(message: Message):
-    # ожидаем формат: /calc a op b
     try:
         parts = message.text.split()
 
@@ -98,7 +96,7 @@ async def calc_cmd(message: Message):
         await message.answer("Произошла ошибка при вычислении.")
 
 
-@dp.message()  # все остальные сообщения
+@dp.message()
 async def echo(message: Message):
     await message.answer("Неизвестная команда. Попробуй /help")
 
@@ -108,3 +106,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
